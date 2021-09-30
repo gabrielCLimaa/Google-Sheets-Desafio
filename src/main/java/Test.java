@@ -113,16 +113,17 @@ public class Test {
         for (Student student : students) {
             double media = (Double.valueOf(student.getP1()) + Double.valueOf(student.getP2())
                     + Double.valueOf(student.getP3())) / 3.0;
-            if (media < 50.00) {
+            
+            if (Integer.valueOf(student.getAbsences()) > (60 * 0.25)) {
+                student.setSituation("Reprovado por Falta");
+                student.setGradeForFinalTest("0");
+            } else if (media < 50.00) {
                 student.setSituation("Reprovado por Nota");
                 student.setGradeForFinalTest("0");
-            } else if (media >= 50.00 && media < 70.00) {
+            }  else if (media >= 50.00 && media < 70.00) {
                 student.setSituation("Exame Final");
                 double n = (100.00 - media);
                 student.setGradeForFinalTest(String.valueOf(n));
-            } else if (Integer.valueOf(student.getAbsences()) > (60 * 0.25)) {
-                student.setSituation("Reprovado por Falta");
-                student.setGradeForFinalTest("0");
             } else {
                 student.setSituation("Aprovado");
                 student.setGradeForFinalTest("0");
